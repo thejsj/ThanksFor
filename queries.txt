@@ -1,0 +1,3 @@
+CREATE USER 'thanksfor'@'localhost' IDENTIFIED BY 'AJgfDVg56zNeVKJ';
+create database thanksfor;
+GRANT ALL PRIVILEGES ON `thanksfor`.* TO 'thanksfor'@'localhost'  IDENTIFIED BY 'AJgfDVg56zNeVKJ';
