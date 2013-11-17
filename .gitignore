@@ -3,6 +3,9 @@ queries.txt
 *.orig
 *.pyc
 *.rej
+*.jpg
+*.jpeg
+*.png
 .installed.cfg
 __minitage__*
 bin/*
