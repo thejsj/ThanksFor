@@ -15,7 +15,7 @@ class Submission(models.Model):
 
 	image = models.ImageField(
 		"Submitted Image", 
-		upload_to="images/", 
+		upload_to='media/documents/%Y/%m/',
 		blank=False, 
 		null=False,
 	)

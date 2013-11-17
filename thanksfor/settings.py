@@ -26,7 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -52,6 +51,16 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'thanksfor.urls'
 
 WSGI_APPLICATION = 'thanksfor.wsgi.application'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "media"),
+    '/var/www/static/',
+)
+
 
 
 # Database
