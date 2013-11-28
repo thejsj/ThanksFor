@@ -18,4 +18,5 @@ images
 media/uploads
 tmp
 .DS_Store
-settings.py 
+settings.py
+queries.txt 
