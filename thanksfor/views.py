@@ -12,19 +12,27 @@ from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from thanksfor.forms import DocumentForm
-
 import json
+from django.contrib.sites.models import get_current_site
+from django.conf import settings
 
 def main(request):
 
     # Get all submissions
-    submissions = Submission.objects.all()
+    submissions = Submission.objects.all().order_by('created_at')
+    submissions = submissions.reverse()
+    # raise Exception([type(submissions), submissions, before_submissions])
+
+    # Get Site URL for JS
+    this_site_url = get_current_site(request).domain
+    this_site_media_url = settings.MEDIA_URL
 
     return render(
         request, 
-        'index.html', 
+        'submission.html', 
         {
-            'submissions' : submissions
+            'submissions' : submissions,
+            'this_site_url' : this_site_url,
         })
 
 @csrf_exempt

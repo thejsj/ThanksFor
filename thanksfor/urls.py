@@ -17,6 +17,9 @@ urlpatterns = patterns('',
     # Main View
    	url(r'^$', 'thanksfor.views.main', name='main'),
 
+    # Pages 
+    (r'^pages/', include('django.contrib.flatpages.urls')),
+
     # Api
    	url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

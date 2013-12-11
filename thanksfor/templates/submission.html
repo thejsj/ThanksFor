@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<ol id="main-submission-contaoner" class="posts">
+	{% for submission in submissions %}
+	<li>
+		<div class="aside">
+			<!-- These could be links too -->
+			<span class="date">{{ submission.created_at|date:"d F Y" }}</span>
+				<p>{{ submission.location }}</p>
+		</div>
+		<div class="post_content">
+			<span class="photo">
+				{% if submission.show_in_site %}
+					<img src="{{ MEDIA_URL }}{{ submission.image }}" title="">
+				{% else %}
+					<div class="blocked-imaged">Image Blocked</div>
+				{% endif %}
+			</span>
+			<!-- Add a paragraph here ? -->
+		</div>
+	</li>
+	{% endfor %}
+	</ol><!-- End posts -->
+{% endblock %}

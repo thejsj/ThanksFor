@@ -1,5 +1,10 @@
+// @codekit-prepend "jquery.1.10.2.min.js"
+// @codekit-prepend "underscore.js"
+// @codekit-prepend "backbone.js"
+
 $(document).ready(function(){
-	console.log("Hello World");
+
+	console.log(this_site_url);
 
 	$(':file').change(function(){
 		var file = this.files[0];
@@ -9,11 +14,12 @@ $(document).ready(function(){
 		//Your validation
 	});
 
-	$(':button').click(function(){
-		var formData = new FormData($('form')[0]);
+	$('#upload-submit').click(function(e){
+		e.preventDefault(); 
 		console.log("Button Clicked");
+		var formData = new FormData($('form')[0]);
 		$.ajax({
-			url: 'http://127.0.0.1:8000/upload-image/',  //Server script to process data
+			url: this_site_url + '/upload-image/',  //Server script to process data
 			type: 'POST',
 			xhr: function() {  // Custom XMLHttpRequest
 				var myXhr = $.ajaxSettings.xhr();
@@ -47,11 +53,13 @@ $(document).ready(function(){
 
 	function get_submission(id){
 		$.ajax({
-			url: 'http://127.0.0.1:8000/submissions/' + id + '/?format=json',  //Server script to process data
+			url: this_site_url + '/submissions/' + id + '/?format=json',  //Server script to process data
 			type: 'GET',
 			success: function(data){
-				console.log("success");
-				console.log(data);
+				var media_url = this_site_url + '/media/';
+				var html = _.template($('#single-post-template').html(), {'submission': data, 'media_url' : media_url}); 
+				console.log(html);
+				$('#main-submission-contaoner').prepend(html);
 			}
 		});
 	}

@@ -1,0 +1,398 @@
+
+/* 1.0 Master/Reset
+----------------------------------------------- */
+html,legend{background: #fff; color:#777}
+address,blockquote,body,dd,del,dl,dt,div,fieldset,form,h1,h2,h3,h4,h5,h6,hr,html,iframe,input,ins,legend,li,map,object,ol,p,pre,table,td,textarea,th,ul{font-size:100%;margin:0;padding:0; vertical-align: baseline;}
+h1,h2,h3,h4,h5,h6,th{font-weight:normal}
+fieldset,img{border:0}
+input,select,textarea{font-family:inherit}
+table{border-collapse:collapse;border-spacing:0}
+caption,th{text-align:left}
+td,th{vertical-align:top}
+abbr,acronym,address,b,caption,cite,code,dfn,em,i,input,samp,select,strong,textarea,var{border:0;font-family:inherit;font-style:normal;font-variant:normal}
+del,ins{text-decoration:none}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+q{quotes:none}q:before{content:"\2018"}q:after{content:"\2019"}q q:before{content:"\201c"}q q:after{content:"\201d"}
+em{font-style:italic;}
+
+body {
+	border-top: 6px solid #333;
+	font: normal 14px/1.57em "Lucida Grande","Lucida Sans","Lucida Sans Unicode","Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+#grid {
+	/* Thanks to the guys at Analog for the Hashgrid — http://hashgrid.com/ */
+	left: 50%;
+	margin-left: -470px;
+	position: absolute;
+	top: 0;
+	width: 941px;
+}
+#grid .horiz {
+	/* 22px line height */
+	border-bottom: 1px dotted #aaa;
+	height: 21px;
+	margin: 0;
+	padding: 0;
+}
+/* 
+#grid {
+	z-index: 0;
+}
+*/
+/* 1.1 Accessibility
+----------------------------------------------- */
+.accessibility {display: none;}
+#access {position: absolute; top: -1000em;}
+
+
+/* 1.2 Headings
+----------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5 {
+	color: #999;
+	font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	line-height: 120%;
+	margin-bottom: 0.15em;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=hIEfix.png,sizingMethod=crop);
+	zoom: 1;
+}
+h1 {
+	font-size: 34px;
+	letter-spacing: -0.02em;
+	margin: 29px 0 -5px 0;
+}
+h2 {
+	font-size: 24px;
+	letter-spacing: -0.02em;
+}
+h3 {
+	font-size: 20px;
+}
+h4 {
+	font-size: 20px;
+}
+h5 {
+	font-size: 17px;
+}
+.page_title {
+	color: #bbb;
+	font-size: 1.8em;
+	margin-left: 160px;
+	margin-top: 0;
+}
+h1 .subtitle,
+h2 .subtitle,
+h3 .subtitle {
+	color: #bbb;
+	font: italic 0.615em/1.38em "Palatino","Times New Roman",Times,serif;
+}
+h1 a:hover .subtitle,
+h2 a:hover .subtitle,
+h3 a:hover .subtitle {
+	color: #999;
+}
+
+/* 1.3 Text Elements
+--------------------------------------------- */
+p,
+.main ul,
+.main ol,
+ol.posts > li,
+pre {
+	margin-bottom: 1.575em;
+}
+.main .posts ul li,
+.main .posts ol li {
+	margin-bottom: 0.5em;
+}
+code {
+	font: normal 1em "Monaco","Courier New",Courier,sans-serif;
+	margin: 0;
+	padding: 0;
+}
+blockquote,
+.blockquote {
+	color: #9B9B9B;
+	font: italic 1.2em/1.31em "Palatino","Times New Roman",Times,serif;
+	margin: 0 auto;
+	padding: 0	;
+}
+.blockquote.short {
+	font-size: 26px;
+}
+.blockquote.long {
+	font-size: 18px;
+}
+.cite {
+	color: #999;
+	font: normal 12px/12px "Helvetica Neue",Arial,Helvetica,sans-serif;
+	margin-bottom: 10px
+}
+.cite a,
+.cite a:visited {
+	color: #888;
+}
+.ampersand {
+	font: italic 130% Baskerville,"Goudy Old Style","Palatino","Book Antiqua",serif;
+}
+
+/* 1.4 Links and Lists
+----------------------------------------------- */
+a,
+	a:visited,
+.main .pagination a,
+.main .pagination a:visited {
+	color: #333;
+	font-weight: bold;
+	text-decoration: none;
+}
+	a:hover,
+	a:focus,
+	a:active {color: #D53C2E;}
+	a:active {
+	outline: 0;
+	position: relative;
+	top: 1px;
+	text-decoration: none;
+	text-shadow: 0 0 2px #999;
+}
+li {
+	display: list-item;
+}
+ol li {
+	list-style: decimal outside;
+}
+ul li {
+	list-style: disc outside;
+}
+dl {
+	margin-top: 22px;
+}
+dd {
+	margin-bottom: 22px;
+}
+.notes li {
+	list-style: none;
+	margin-bottom: 0.5em;
+}
+
+
+/* 1.5 Forms
+----------------------------------------------- */
+form .field input,
+form .textarea textarea,
+form .select select,
+input[type="text"],
+input[type="textarea"],
+.tags li a {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+	input:focus {
+	border: 1px solid #444;
+}
+form label {
+	font-weight: bold;
+}
+.form_topaligned .field {
+	padding: 0 0 9px 0;
+	position: relative;
+}
+.field.error input,
+.select.error select,
+.textarea.error textarea {
+	-moz-box-shadow: 0 0 3px #888;
+	-webkit-box-shadow: 0 0 3px #888;
+	box-shadow: 0 0 3px #888;
+}
+.form_topaligned .field label,
+.form_topaligned .field .label,
+.form_topaligned .textarea label,
+.form_topaligned .textarea .label {
+	width: auto;
+}
+#respond .error input,
+#respond .error textarea {
+	opacity: 1;
+}
+
+
+/* 1.6 Columns and Rows
+----------------------------------------------- */
+.column {
+	display: inline;
+	float: left;
+	margin: 0 20px 20px 0;
+	position: relative;
+	width: 205px;
+}
+.column.last {
+	border-right: 0;
+	margin-right: 0;
+}
+.row .column {
+	margin-bottom: 0;
+}
+.column.half {
+	width: 470px;
+}
+.column.quarter {
+	width: 225px;
+}
+.column.last {
+	margin-right: 0;
+}
+.row {
+	display: block;
+	float: left;
+	margin: 0 0 20px 0;
+	}
+.row.last {
+	border-bottom: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+
+/* 1.7 Puffs and Boxes
+----------------------------------------------- */
+.puff {
+	border: 0;
+	display: inline;
+	padding: 0;
+}
+.puff.right {
+	float: right;
+	margin: 0 0 10px 20px;
+}
+.puff.left {
+	float: left;
+	margin: 0 20px 10px 0;
+}
+
+
+/* 1.8 Buttons
+----------------------------------------------- */
+button,
+form input.button,
+.submit input,
+.button,
+input[type="submit"],
+.prev_next a,
+.rss_link {
+	background: #bbbbbb;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	font: bold 1em "Helvetica Neue",Arial,Helvetica,sans-serif;
+	margin: 0;
+	overflow: visible; /* overflow: visible + width: auto avoids IE adding double padding */
+	padding: 3px 10px;
+	text-align: center;
+	width: auto;
+}
+button:hover,
+button:focus,
+button:active,
+form input.button:hover,
+form input.button:focus,
+form input.button:active,
+.submit input:hover,
+.submit input:focus,
+.submit input:active,
+.button:hover,
+.button:active,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="submit"]:active,
+.prev_next a:hover,
+.rss_link:hover {
+	background: #D53C2E;
+	color: #fff;
+	text-decoration: none;
+}
+.prev_next a,
+.utility_links li a,
+.button {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+.form_topaligned .button,
+.form_topaligned input.button {
+	padding-left: auto;
+}
+form button,
+form .button {
+	margin-top: 1em;
+}
+
+/* 1.9 Tables
+----------------------------------------------- */
+table {
+	line-height: 110%;
+	margin: 0;
+}
+table th {
+	font-size: 1.143em;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+table td {
+	border-top: 1px solid red;
+	padding: 0.245em 14px 0.245em 0;
+}
+table tbody {
+	font-size: 13px;
+}
+table span {
+	color: #585245;
+	font-weight: bold;
+}
+table .alt {
+	background: #fbfbfb;
+}
+.wp_syntax table {
+	margin: 0;
+}
+table caption {
+	color: #9B9B9B;
+	font: italic 1em "Palatino","Times New Roman",Times,serif;
+	margin: 3px 0 5px 0;
+}
+
+
+/* 1.10 Images
+----------------------------------------------- */
+.main img.alignright {
+	display: inline;
+	float: right;
+}
+.main img.alignleft {
+	display: inline;
+	float: left;
+}
+.main img.size-large { /* 540px wide */
+
+}
+.main img.size-medium { /* 460px wide */
+
+}
+.main img.alignright{
+	margin: -5px -240px 20px 20px;
+}
+.main img.alignleft {
+	margin: -5px 20px 20px -160px;
+}
+.main img.alignright {
+	margin: -5px -160px 20px 20px;
+}

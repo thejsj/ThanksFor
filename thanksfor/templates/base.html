@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+	<title>{% block title %}Thanks For{% endblock %}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="ThanksFor official site. Come in and submit your own!" />
+	<meta name="keywords" content="funny,Times Square,New York City,Mareen Fischinger,wisdom" />
+
+	<!-- Default colours -->
+	<meta name="color:Top Border" content="#333" />
+	<meta name="color:Site Title" content="#D53C2E" />
+	<meta name="color:Link" content="#333" />
+	<meta name="color:Link Hover" content="#D53C2E" />
+	<meta name="color:Button" content="#bbbbbb" />
+	<meta name="color:Button Hover" content="#D53C2E" />
+	<meta name="color:Post Title" content="#333" />
+	<meta name="color:Post Title Link" content="#D53C2E" />
+	
+	<!-- Default social link text -->
+	<meta name="text:Website Address" content="" />
+	<meta name="text:Blog Address" content="" />
+	<meta name="text:Flickr Username" content="" />
+	<meta name="text:Twitter Username" content="" />
+	<meta name="text:Facebook Username" content="" />
+	<meta name="text:YouTube Username" content="" />
+	<meta name="text:Lastfm Username" content="" />
+	<meta name="text:Delicious Username" content="" />
+	<meta name="text:FriendFeed Username" content="" />
+
+	<!-- CSS --><!-- http://safe.txmblr.com/theme/preview/8738 -->
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+</head>
+<body>
+	
+	<div id="outer_wrapper">
+		<div id="wrapper">
+	    	<div id="header">
+				<h1 id="branding"><a href="{{ BASE_URL }}" title="/">Thanks For</a></h1>
+				<ul id="nav" class="navigation">
+					<li><a href="{{ BASE_URL }}/about/" title="/">About</a></li>
+					<!-- <li><a href="#" title="/archive/">Archive</a></li>
+					<li><a href="#" title="http://demo.tumblr.com/rss">RSS</a></li>
+					<li><a href="#" title="/mobile">Mobile</a></li> -->
+				</ul>
+				<ul id="pages" class="navigation"></ul>
+				<div class="about">
+					<p>Let's imagine there's some text right about here.</p>
+				</div>
+			</div>
+			<div class="article_header">
+				<div></div>
+			</div>
+			<div class="main">
+				{% block content %}
+
+				{% endblock %}
+			</div>
+			<div id="sidebar">
+				{% block sidebar %}
+				<div class="blog_nav">
+					<h3>Upload</h3>
+					<p>Upload your own image</p>
+					<form enctype="multipart/form-data" class="upload-form">
+						<div class="field fld_name required input">
+							<input name="docfile" type="file" />
+							<button id="upload-submit" type="button">Upload</button>
+						</div>
+					</form>
+					<h3>Elsewhere</h3>
+					<ul class="social_links">
+						<li>
+							<a href="http://designbylkc.com/">Website</a>
+						</li>
+						<!-- Add more social media links if you want -->
+					</ul>
+				</div>
+				{% endblock %}
+			</div>
+		</div>
+	</div>	
+	<script>
+		var this_site_url = '{{ BASE_URL }}';
+		var this_site_media_url = '{{ this_site_media_url }}';
+	</script>		
+	<script src="{{ STATIC_URL }}js/main-ck.js"></script>
+	<!-- Templates -->
+	<script type="text/html" id='single-post-template'>
+		<li>
+			<div class="aside">
+				<!-- These could be links too -->
+				<span class="date"><%= submission.date %></span>
+					<p><%= submission.location %></p>
+			</div>
+			<div class="post_content">
+				<span class="photo">
+					<% if (submission.show_in_site){ %> 
+						<img src="<%= media_url %><%= submission.image %>" title="">
+					<% } else { %>
+						<div class="blocked-imaged">Image Blocked</div>
+					<% } %>
+				</span>
+				<!-- Add a paragraph here ? -->
+			</div>
+		</li>
+	</script>
+</script>
+</body>
+</html>

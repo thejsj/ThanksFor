@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}
+	<ol id="main-submission-contaoner" class="posts">
+	<li>
+		<div class="aside">
+			<!-- These could be links too -->
+			<span class="date"></span>
+		</div>
+		<div class="post_content">
+			{{ flatpage.content }}
+		</div>
+	</li>
+	</ol><!-- End posts -->
+{% endblock %}
+
+{% block sidebar %}
+	<div class="blog_nav">
+		<h3>Elsewhere</h3>
+		<ul class="social_links">
+			<li>
+				<a href="http://designbylkc.com/">Website</a>
+			</li>
+			<!-- Add more social media links if you want -->
+		</ul>
+	</div>
+{% endblock %}
