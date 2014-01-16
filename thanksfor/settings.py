@@ -79,11 +79,7 @@ WSGI_APPLICATION = 'thanksfor.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "media"),
-    '/var/www/static/',
-)
+STATIC_ROOT =  '/home/thejsj/webapps/thanksforstatic/'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

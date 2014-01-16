@@ -1,0 +1,111 @@
+
+::-moz-selection {
+	background: #333;
+	color: #fff;
+}
+::selection {
+	background: #333;
+	color: #fff;
+}
+
+@import "form-styles";
+
+/*
+-----------------------------------------------
+Main theme styles
+-----------------------------------------------
+*/
+
+/*
+1. GLOBAL STYLES
+------------------------------------------------------------------- */
+
+@import "global-styles";
+
+/*
+2. TOP LEVEL ELEMENTS
+------------------------------------------------------------------- */
+
+@import "top-level"; 
+
+.main {
+
+	.photo {
+		width: 540px;
+	}
+
+	img {
+		box-shadow: 0 0 5px #999;
+		-moz-box-shadow: 0 0 5px #999;
+		-webkit-box-shadow: 0 0 5px #999;
+		margin: 0;
+		max-width: 540px;
+	}
+}
+
+form.upload-form {
+	.field {
+		input {
+			width: 200px; 
+			box-sizing: border-box; 
+			margin-bottom: -2px; 
+		}
+		button, .button {
+			box-sizing: border-box; 
+			width: 200px; 
+		} 
+	}
+}
+
+
+.post_content {
+	padding-bottom: 1.575em;
+}
+	
+
+/*
+3. SPECIFIC MODULES
+------------------------------------------------------------------- */
+
+@import "specific-modules"; 
+
+/*
+-----------------------------------------------
+CSS3 Icing
+-----------------------------------------------
+*/
+
+a,
+#nav .on a,
+button,
+form input.button,
+.submit input,
+.button,
+.prev_next a,
+.prev_next a.next,
+.prev_next a.prev,
+h1 a .subtitle,
+h2 a .subtitle,
+h3 a .subtitle,
+.article_header .comments {
+	-o-transition-duration: .55s;
+	-o-transition-property: color, background-color;
+	-webkit-transition-duration: .55s;
+	-webkit-transition-property: color, background-color;
+}
+.prev_next a:active,
+	button:active,
+form input.button:active,
+.submit input:active,
+.tags li a:active {
+	-moz-box-shadow: 0 0 3px #888;
+	-webkit-box-shadow: 0 0 3px #888;
+	box-shadow: 0 0 3px #888;
+}
+
+.tag:before, .search_query:before { 
+	content:''; 
+}
+.tag:after, .search_query:after { 
+	content:'”'; 
+}

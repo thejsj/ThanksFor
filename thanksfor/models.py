@@ -45,7 +45,6 @@ class Submission(models.Model):
 		max_length=255,
 		blank=True, 
 		null=True,
-		editable=False,
 	)
 
 	# Moderation
