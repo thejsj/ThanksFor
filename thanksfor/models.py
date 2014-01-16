@@ -9,7 +9,7 @@ class Submission(models.Model):
 	# Required 
 
 	created_at = models.DateTimeField(
-		editable=False,
+		editable=True,
 		auto_now_add=True,
 	)
 
@@ -45,6 +45,7 @@ class Submission(models.Model):
 		max_length=255,
 		blank=True, 
 		null=True,
+		editable=True,
 	)
 
 	# Moderation
@@ -65,7 +66,6 @@ class Submission(models.Model):
 		url = "http://freegeoip.net/json/" + self.ip_address
 		socket.setdefaulttimeout(5)
 		headers = {'Typ':'django','Ver':'1.1.1','Connection':'Close'}
-		print url
 		try:
 			req = Request(url, None, headers)
 			urlfile = urlopen(req)

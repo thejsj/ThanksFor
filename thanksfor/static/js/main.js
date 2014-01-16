@@ -55,12 +55,16 @@ $(document).ready(function(){
 
 	function get_submission(id){
 		console.log("Id For new Submission : " + id);
+		console.log(this_site_url + '/submissions/' + id + '/?format=json');
 		$.ajax({
 			url: this_site_url + '/submissions/' + id + '/?format=json',  //Server script to process data
 			type: 'GET',
 			success: function(data){
 				var media_url = this_site_url + '/media/';
-				var html = _.template($('#single-post-template').html(), {'submission': data, 'media_url' : media_url}); 
+				var timestamp = Date.parse(data.created_at);
+				var date = moment.unix(timestamp);
+				var date_string = moment().format('D MMMM YYYY');
+				var html = _.template($('#single-post-template').html(), {'submission': data, 'media_url' : media_url, 'date' : date_string }); 
 				console.log(html);
 				$('#main-submission-contaoner').prepend(html);
 			}

@@ -40,20 +40,20 @@ def ajax_upload(request):
     # Handle file upload
     if request.method == 'POST':
         try:
-            form = DocumentForm(request.POST)
-            if form.is_valid():
-                new_image_submission = form.save(commit=False)
-                new_image_submission.image = request.FILES['docfile']
-                new_image_submission.save()
-                return HttpResponse(
-                    json.dumps([1, new_image_submission.pk]), 
-                    mimetype='application/javascript'
-                    )
-            else:
-                return HttpResponse(
-                    json.dumps(['Form Was Invalid']), 
-                    mimetype='application/javascript'
-                    )
+            # form = DocumentForm(request.POST)
+            # if form.is_valid():
+            # new_image_submission = form.save(commit=False)
+            new_image_submission = Submission(image=request.FILES['docfile'])
+            new_image_submission.save()
+            return HttpResponse(
+                json.dumps([1, new_image_submission.pk]), 
+                mimetype='application/javascript'
+                )
+            #else:
+            #    return HttpResponse(
+            #        json.dumps(['Form Was Invalid']), 
+            #        mimetype='application/javascript'
+            #        )
         except:
             return HttpResponse(
                 json.dumps(['Eror Processing This Form']),

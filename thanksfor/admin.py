@@ -9,7 +9,7 @@ from thanksfor.models import Submission
 #         fields = ('second',)
 
 class SubmissionAdmin(admin.ModelAdmin):
-	readonly_fields=('created_at','ip_address','location')
+	readonly_fields=('ip_address',)
     #form = CustomSubmissionForm
 
 admin.site.register(Submission, SubmissionAdmin)

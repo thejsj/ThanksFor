@@ -84,13 +84,14 @@
 	<script src="{{ STATIC_URL }}js/jquery.1.10.2.min.js"></script>
 	<script src="{{ STATIC_URL }}js/underscore.js"></script>
 	<script src="{{ STATIC_URL }}js/backbone-min.js"></script>
+	<script src="{{ STATIC_URL }}js/moment.min.js"></script>
 	<script src="{{ STATIC_URL }}js/main.js"></script>
 	<!-- Templates -->
 	<script type="text/html" id='single-post-template'>
 		<li>
 			<div class="aside">
 				<!-- These could be links too -->
-				<span class="date"><%= submission.date %></span>
+				<span class="date"><%= date %></span>
 					<p><%= submission.location %></p>
 			</div>
 			<div class="post_content">
