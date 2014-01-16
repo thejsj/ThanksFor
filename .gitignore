@@ -20,3 +20,8 @@ tmp
 .DS_Store
 settings.py
 queries.txt 
+
+static/.sass-cache
+static/.sass-cache/*
+
+static/config.rb
