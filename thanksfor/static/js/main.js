@@ -31,10 +31,12 @@ $(document).ready(function(){
 			//Ajax events
 			success: function(data){
 				var data = eval(data);
+				console.log(data);
 				get_submission(data[1]);
 			},
 			error: function(data){
-				console.log("error")
+				console.log("error");
+				console.log(data);
 			},
 			// Form data
 			data: formData,
@@ -52,6 +54,7 @@ $(document).ready(function(){
 	}
 
 	function get_submission(id){
+		console.log("Id For new Submission : " + id);
 		$.ajax({
 			url: this_site_url + '/submissions/' + id + '/?format=json',  //Server script to process data
 			type: 'GET',
