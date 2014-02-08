@@ -21,6 +21,9 @@ tmp
 settings.py
 queries.txt 
 
+fabfile.py
+**/fabfile.py
+
 static/.sass-cache
 static/.sass-cache/*
 
