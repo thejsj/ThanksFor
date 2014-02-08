@@ -44,6 +44,12 @@ Main theme styles
 }
 
 form.upload-form {
+
+	&.disabled {
+		opacity: 0.4;
+		cursor: progress;
+	}
+
 	.field {
 		input {
 			width: 200px; 
@@ -51,10 +57,26 @@ form.upload-form {
 			margin-bottom: -2px; 
 		}
 		button, .button {
+			cursor: pointer; 
+			background-color: #089A35;
 			box-sizing: border-box; 
 			width: 200px; 
+			&:hover {
+				background-color: #095B22;
+			}
+			&.disabled {
+				cursor: progress;
+				background-color: #c7c7c7;
+				&:hover {
+					background-color: #095B22;
+				}
+			}
 		} 
 	}
+}
+
+.about {
+	height: 110px; 
 }
 
 

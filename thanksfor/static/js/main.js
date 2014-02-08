@@ -17,6 +17,15 @@ $(document).ready(function(){
 	$('#upload-submit').click(function(e){
 		e.preventDefault(); 
 		console.log("Button Clicked");
+		$this = $(this);
+		$this
+			.text("Uploading File...")
+			.attr("disabled", "disabled")
+			.addClass('disabled');
+
+		$(".upload-form")
+			.addClass('disabled');
+
 		var formData = new FormData($('form')[0]);
 		$.ajax({
 			url: this_site_url + '/upload-image/',  //Server script to process data
@@ -33,6 +42,13 @@ $(document).ready(function(){
 				var data = eval(data);
 				console.log(data);
 				get_submission(data[1]);
+				$this
+					.text("Upload")
+					.removeAttr("disabled")
+					.removeClass('disabled');
+
+				$(".upload-form")
+					.removeClass('disabled');
 			},
 			error: function(data){
 				console.log("error");
