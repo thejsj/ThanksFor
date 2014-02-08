@@ -6,6 +6,11 @@ queries.txt
 *.jpg
 *.jpeg
 *.png
+
+!thanksfor/static/images/*.jpg
+!thanksfor/static/images/*.jpeg
+!thanksfor/static/images/*.png
+
 .installed.cfg
 __minitage__*
 bin/*
