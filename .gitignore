@@ -7,8 +7,6 @@ queries.txt
 *.jpeg
 *.png
 
-
-
 .installed.cfg
 __minitage__*
 bin/*
@@ -24,7 +22,6 @@ tmp
 settings.py
 queries.txt 
 
-
 !thanksfor/static/images/*.jpg
 !thanksfor/static/images/*.jpeg
 !thanksfor/static/images/*.png
@@ -32,7 +29,10 @@ queries.txt
 fabfile.py
 **/fabfile.py
 
-static/.sass-cache
-static/.sass-cache/*
+thanksfor/static/.sass-cache
+thanksfor/static/.sass-cache/*
+
+**/.sass-cache
+**/.sass-cache/*
 
 static/config.rb
