@@ -73,7 +73,7 @@ class Submission(models.Model):
 			urlfile.close()
 		except Exception:
 			pass
-		if response:
+		if response and (self.location == "" or self.location is None):
 			if response['region_name']:
 				if response['city'] and response['country_code']:
 					self.location = response['city'] + ", " + response['region_name']
