@@ -7,9 +7,7 @@ queries.txt
 *.jpeg
 *.png
 
-!thanksfor/static/images/*.jpg
-!thanksfor/static/images/*.jpeg
-!thanksfor/static/images/*.png
+
 
 .installed.cfg
 __minitage__*
@@ -25,6 +23,11 @@ tmp
 .DS_Store
 settings.py
 queries.txt 
+
+!thanksfor/static/images
+!thanksfor/static/images/*.jpg
+!thanksfor/static/images/*.jpeg
+!thanksfor/static/images/*.png
 
 fabfile.py
 **/fabfile.py
