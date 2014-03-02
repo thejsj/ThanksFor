@@ -15,7 +15,7 @@ from thanksfor.forms import DocumentForm
 import json
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from functions import *
 
 def main(request):
@@ -63,14 +63,18 @@ def ajax_upload(request):
 
             # Send Email to Laurie and Jorge
             image_url = path = os.path.join(settings.MEDIA_URL, str(new_image_submission.image))
-            send_mail(
-                subject, 
-                'New Image Uploaded. Please Check Image', 
-                'jorge.silva@thejsj.com',
-                ['jorge.silva@thejsj.com', 'laurie@designbylkc.com'], 
-                html_message='New Image Uploaded. <br/><br/>Please Check Image Here: <a href="http://thanks-form.com/' + str(image_url) + '" /><br/><br/>' + str(new_image_submission.image_thumb()), 
-                fail_silently=True,
-            )
+            try:
+                html_message='New Image Uploaded. <br/><br/>Please Check Image Here: <a href="http://thanks-form.com/' + str(image_url) + '" /><br/><br/>' + str(new_image_submission.image_thumb())
+                msg = EmailMultiAlternatives(
+                    subject, 
+                    'New Image Uploaded. Please Check Image', 
+                    'jorge.silva@thejsj.com',
+                    ['jorge.silva@thejsj.com', 'laurie@designbylkc.com'], 
+                )
+                msg.attach_alternative(html_message, "text/html")
+                msg.send()
+            except:
+                pass
 
             return HttpResponse(
                 json.dumps([1, new_image_submission.pk, request.POST.get('ios-device')]), 
