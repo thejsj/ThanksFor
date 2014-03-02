@@ -64,7 +64,8 @@ def ajax_upload(request):
             # Send Email to Laurie and Jorge
             image_url = path = os.path.join(settings.MEDIA_URL, str(new_image_submission.image))
             try:
-                html_message='New Image Uploaded. <br/><br/>Please Check Image Here: <a href="http://thanks-for.com' + str(image_url) + '">' + str(image_url) + '</a><br/><br/><img src="http://thanks-for.com' + str(image_url) + '" />',
+                # <img src="http://thanks-for.com' + str(image_url) + '" />'
+                html_message='New Image Uploaded. <br/><br/>Please Check Image Here: <a href="http://thanks-for.com' + str(image_url) + '">' + str(image_url) + '</a><br/><br/>',
                 msg = EmailMultiAlternatives(
                     subject, 
                     'New Image Uploaded. Please Check Image', 
