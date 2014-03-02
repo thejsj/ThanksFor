@@ -68,8 +68,8 @@ def ajax_upload(request):
                 'New Image Uploaded. Please Check Image', 
                 'jorge.silva@thejsj.com',
                 ['jorge.silva@thejsj.com', 'laurie@designbylkc.com'], 
-                fail_silently=True,
                 html_message='New Image Uploaded. <br/><br/>Please Check Image Here: <a href="http://thanks-form.com/' + str(image_url) + '" /><br/><br/>' + str(new_image_submission.image_thumb()), 
+                fail_silently=True,
             )
 
             return HttpResponse(
