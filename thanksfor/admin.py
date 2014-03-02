@@ -16,8 +16,8 @@ rotate_counter_clock_wise.short_description = "Rotate Counter Clock-wise"
 
 class SubmissionAdmin(admin.ModelAdmin):
 
-    fields = ('created_at', 'image', 'image_thumb', 'name', 'email', 'ip_address','location', 'show_in_site')
-    list_display = ('created_at', 'image', 'image_thumb', 'name', 'email', 'ip_address','location', 'show_in_site')
+    fields = ('created_at', 'image', 'image_thumb', 'name', 'email', 'ip_address','location', 'show_in_site' , 'user_agent')
+    list_display = ('created_at', 'image', 'image_thumb','name', 'email','location','show_in_site',)
     readonly_fields=('ip_address','image_thumb')
     
     actions = [rotate_clock_wise, rotate_counter_clock_wise]
