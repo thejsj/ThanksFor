@@ -16,12 +16,13 @@ import json
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
 
+from functions import cropImage
+
 def main(request):
 
     # Get all submissions
     submissions = Submission.objects.all().order_by('created_at')
     submissions = submissions.reverse()
-    # raise Exception([type(submissions), submissions, before_submissions])
 
     # Get Site URL for JS
     this_site_url = get_current_site(request).domain
@@ -39,30 +40,27 @@ def main(request):
 def ajax_upload(request):
     # Handle file upload
     if request.method == 'POST':
-        try:
-            # form = DocumentForm(request.POST)
-            # if form.is_valid():
-            # new_image_submission = form.save(commit=False)
+        try:   
+            # Add Submission
             new_image_submission = Submission(image=request.FILES['docfile'])
             new_image_submission.save()
+
+            # Crop Image
+            cropImage(new_image_submission)
+
             return HttpResponse(
                 json.dumps([1, new_image_submission.pk]), 
-                mimetype='application/javascript'
+                content_type='application/javascript'
                 )
-            #else:
-            #    return HttpResponse(
-            #        json.dumps(['Form Was Invalid']), 
-            #        mimetype='application/javascript'
-            #        )
         except:
             return HttpResponse(
                 json.dumps(['Eror Processing This Form']),
-                mimetype='application/javascript'
+                content_type='application/javascript'
                 )
     # Render list page with the documents and the form
     return HttpResponse(
         json.dumps(['This is not a Post Request']), 
-        mimetype='application/javascript'
+        content_type='application/javascript'
         )
 
 # ViewSets define the view behavior.
