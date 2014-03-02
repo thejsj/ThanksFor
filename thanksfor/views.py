@@ -65,10 +65,11 @@ def ajax_upload(request):
             image_url = path = os.path.join(settings.MEDIA_URL, str(new_image_submission.image))
             send_mail(
                 subject, 
-                'New Image Uloaded. Please Check Image Here: ' + str(image_url) + " / " + str(new_image_submission.image_thumb()), 
+                'New Image Uploaded. Please Check Image', 
                 'jorge.silva@thejsj.com',
                 ['jorge.silva@thejsj.com', 'laurie@designbylkc.com'], 
-                fail_silently=True
+                fail_silently=True,
+                html_message='New Image Uploaded. <br/><br/>Please Check Image Here: <a href="http://thanks-form.com/' + str(image_url) + '" /><br/><br/>' + str(new_image_submission.image_thumb()), 
             )
 
             return HttpResponse(
