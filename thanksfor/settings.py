@@ -29,6 +29,12 @@ ALLOWED_HOSTS = []
 
 SITE_ID = 1
 
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'thanks_for'
+EMAIL_HOST_PASSWORD = 'AJgfDVg56zNeVKJ'
+DEFAULT_FROM_EMAIL = 'hello@thanks-for.com'
+SERVER_EMAIL = 'hello@thanks-for.com'
+
 # Application definition
 
 INSTALLED_APPS = (
