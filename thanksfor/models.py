@@ -3,81 +3,98 @@ from urllib2 import urlopen, Request
 import socket
 import json
 from django.conf import settings
+from datetime import datetime
+
 
 class Submission(models.Model):
 
-	# Required 
+    # Required 
 
-	created_at = models.DateTimeField(
-		editable=True,
-		auto_now_add=True,
-	)
+    created_at = models.DateTimeField(
+        default=datetime.now,
+        editable=True,
+    )
 
-	image = models.ImageField(
-		"Submitted Image", 
-		upload_to='media/documents/%Y/%m/',
-		blank=False, 
-		null=False,
-	)
+    image = models.ImageField(
+        "Submitted Image", 
+        upload_to='media/documents/%Y/%m/',
+        blank=False, 
+        null=False,
+    )
 
-	# User info is Optional
+    # User info is Optional
 
-	name = models.CharField(
-		max_length=255,
-		blank=True, 
-		null=True,
-	)
+    name = models.CharField(
+        max_length=255,
+        blank=True, 
+        null=True,
+    )
 
-	email = models.EmailField(
-		blank=True, 
-		null=True,
-	)
+    email = models.EmailField(
+        blank=True, 
+        null=True,
+    )
 
-	# Get Location
+    # Get Location
 
-	ip_address = models.GenericIPAddressField(
-		blank=True, 
-		null=True,
-		editable=False,
-	)
+    ip_address = models.GenericIPAddressField(
+        blank=True, 
+        null=True,
+        editable=False,
+    )
 
-	location = models.CharField(
-		max_length=255,
-		blank=True, 
-		null=True,
-		editable=True,
-	)
+    location = models.CharField(
+        max_length=255,
+        blank=True, 
+        null=True,
+        editable=True,
+    )
 
-	# Moderation
+    # User Agent
+    user_agent = models.CharField(
+        max_length=255,
+        blank=True, 
+        null=True,
+    ) 
 
-	show_in_site = models.BooleanField (
-		default=True,
-	)
+    # Moderation
 
-	def __str__(self):
-		return str(self.created_at.strftime('%m/%d/%Y')) + " || " + str(self.image)
+    show_in_site = models.BooleanField (
+        default=True,
+    )
 
-	def save(self, *args, **kwargs):
-		# Add a defulat IP addres for Testing
-		if self.ip_address is None and settings.DEBUG:
-			self.ip_address = "72.84.236.204"
+    def __str__(self):
+        return str(self.created_at.strftime('%m/%d/%Y')) + " || " + str(self.image)
 
-		# Get Location by IP Address
-		url = "http://freegeoip.net/json/" + self.ip_address
-		socket.setdefaulttimeout(5)
-		headers = {'Typ':'django','Ver':'1.1.1','Connection':'Close'}
-		try:
-			req = Request(url, None, headers)
-			urlfile = urlopen(req)
-			response = json.loads(urlfile.read())
-			urlfile.close()
-		except Exception:
-			pass
-		if response and (self.location == "" or self.location is None):
-			if response['region_name']:
-				if response['city'] and response['country_code']:
-					self.location = response['city'] + ", " + response['region_name']
-			else:
-				if response['city'] and response['country_name']:
-					self.location = response['city'] + ", " + response['country_name']
-		super(Submission, self).save(*args, **kwargs)
+    def image_thumb(self):
+        if self.image:
+            return u'<img src="%s" style="max-width: 200px; max-height: 200px;" />' % (self.image.url)
+        else:
+            return "No Image To Display"
+    image_thumb.short_description = 'Thumbnail'
+    image_thumb.allow_tags = True
+
+    def save(self, *args, **kwargs):
+        # Add a defulat IP addres for Testing
+        if self.ip_address is None and settings.DEBUG:
+            self.ip_address = "72.84.236.204"
+
+        # Get Location by IP Address
+        url = "http://freegeoip.net/json/" + self.ip_address
+        socket.setdefaulttimeout(5)
+        headers = {'Typ':'django','Ver':'1.1.1','Connection':'Close'}
+        try:
+            req = Request(url, None, headers)
+            urlfile = urlopen(req)
+            response = json.loads(urlfile.read())
+            urlfile.close()
+        except Exception:
+            pass
+        if response and (self.location == "" or self.location is None):
+            if response['region_name']:
+                if response['city'] and response['country_code']:
+                    self.location = response['city'] + ", " + response['region_name']
+            else:
+                if response['city'] and response['country_name']:
+                    self.location = response['city'] + ", " + response['country_name']
+        super(Submission, self).save(*args, **kwargs)

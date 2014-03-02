@@ -15,8 +15,8 @@ from thanksfor.forms import DocumentForm
 import json
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
-
-from functions import cropImage
+from django.core.mail import send_mail
+from functions import *
 
 def main(request):
 
@@ -41,27 +41,50 @@ def ajax_upload(request):
     # Handle file upload
     if request.method == 'POST':
         try:   
+            # Get User Agent
+            user_agent = str( request.META.get('HTTP_USER_AGENT', '') )
+
             # Add Submission
-            new_image_submission = Submission(image=request.FILES['docfile'])
+            new_image_submission = Submission(
+                image=request.FILES['docfile'],
+                user_agent=user_agent
+            )
             new_image_submission.save()
 
             # Crop Image
-            cropImage(new_image_submission)
+            new_image_submission = cropImage(new_image_submission)
+
+            # If IOS Device Rotate (100% Hack)
+            if request.POST.get('ios-device') == '1':
+                subject = 'New Image Uploaded (From Iphone)'
+                new_image_submission = rotateImageClockWise(new_image_submission)
+            else:
+                subject = 'New Image Uploaded (Not From Iphone)'
+
+            # Send Email to Laurie and Jorge
+            image_url = path = os.path.join(settings.MEDIA_URL, str(new_image_submission.image))
+            send_mail(
+                subject, 
+                'New Image Uloaded. Please Check Image Here: ' + str(image_url) + " / " + str(new_image_submission.image_thumb()), 
+                'jorge.silva@thejsj.com',
+                ['jorge.silva@thejsj.com', 'laurie@designbylkc.com'], 
+                fail_silently=True
+            )
 
             return HttpResponse(
-                json.dumps([1, new_image_submission.pk]), 
+                json.dumps([1, new_image_submission.pk, request.POST.get('ios-device')]), 
                 content_type='application/javascript'
-                )
+            )
         except:
             return HttpResponse(
-                json.dumps(['Eror Processing This Form']),
+                json.dumps(['Eror Processing This Form', request.POST.get('ios-device')]),
                 content_type='application/javascript'
-                )
+            )
     # Render list page with the documents and the form
     return HttpResponse(
         json.dumps(['This is not a Post Request']), 
         content_type='application/javascript'
-        )
+    )
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):

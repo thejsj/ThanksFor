@@ -51,10 +51,17 @@ form.upload-form {
 	}
 
 	.field {
-		input {
+
+		input[type="checkbox"] {
+			width: 20px; 
+			box-sizing: border-box; 
+		}
+
+		input[type="file"],
+		input[type="text"] {
 			width: 200px; 
 			box-sizing: border-box; 
-			margin-bottom: -2px; 
+			margin-bottom: 5px;
 		}
 		button, .button {
 			cursor: pointer; 
