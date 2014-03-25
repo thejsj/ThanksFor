@@ -76,7 +76,7 @@ class Submission(models.Model):
 
     def save(self, *args, **kwargs):
         # Add a defulat IP addres for Testing
-        if self.ip_address is not None:
+        if self.ip_address is not None and self.ip_address != '':
             # Get Location by IP Address
             url = "http://freegeoip.net/json/" + self.ip_address
             socket.setdefaulttimeout(5)
