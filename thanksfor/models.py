@@ -40,7 +40,6 @@ class Submission(models.Model):
     ip_address = models.GenericIPAddressField(
         blank=True, 
         null=True,
-        editable=False,
     )
 
     location = models.CharField(
