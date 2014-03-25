@@ -36,6 +36,14 @@ def main(request):
             'this_site_url' : this_site_url,
         })
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 @csrf_exempt
 def ajax_upload(request):
     # Handle file upload
@@ -44,11 +52,16 @@ def ajax_upload(request):
             # Get User Agent
             user_agent = str( request.META.get('HTTP_USER_AGENT', '') )
 
+            try:
+                user_ip = get_client_ip()
+            except:
+                user_ip = None
+
             # Add Submission
             new_image_submission = Submission(
                 image=request.FILES['docfile'],
                 user_agent=user_agent,
-                ip_address=get_client_ip()
+                ip_address=user_ip
             )
             new_image_submission.save()
 
@@ -92,14 +105,6 @@ def ajax_upload(request):
         json.dumps(['This is not a Post Request']), 
         content_type='application/javascript'
     )
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
