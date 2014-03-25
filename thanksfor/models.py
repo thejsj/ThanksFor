@@ -76,25 +76,23 @@ class Submission(models.Model):
 
     def save(self, *args, **kwargs):
         # Add a defulat IP addres for Testing
-        if self.ip_address is None and settings.DEBUG:
-            self.ip_address = "72.84.236.204"
-
-        # Get Location by IP Address
-        url = "http://freegeoip.net/json/" + self.ip_address
-        socket.setdefaulttimeout(5)
-        headers = {'Typ':'django','Ver':'1.1.1','Connection':'Close'}
-        try:
-            req = Request(url, None, headers)
-            urlfile = urlopen(req)
-            response = json.loads(urlfile.read())
-            urlfile.close()
-        except Exception:
-            pass
-        if response and (self.location == "" or self.location is None):
-            if response['region_name']:
-                if response['city'] and response['country_code']:
-                    self.location = response['city'] + ", " + response['region_name']
-            else:
-                if response['city'] and response['country_name']:
-                    self.location = response['city'] + ", " + response['country_name']
+        if self.ip_address is not None:
+            # Get Location by IP Address
+            url = "http://freegeoip.net/json/" + self.ip_address
+            socket.setdefaulttimeout(5)
+            headers = {'Typ':'django','Ver':'1.1.1','Connection':'Close'}
+            try:
+                req = Request(url, None, headers)
+                urlfile = urlopen(req)
+                response = json.loads(urlfile.read())
+                urlfile.close()
+            except Exception:
+                pass
+            if response and (self.location == "" or self.location is None):
+                if response['region_name']:
+                    if response['city'] and response['country_code']:
+                        self.location = response['city'] + ", " + response['region_name']
+                else:
+                    if response['city'] and response['country_name']:
+                        self.location = response['city'] + ", " + response['country_name']
         super(Submission, self).save(*args, **kwargs)
