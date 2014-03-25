@@ -54,8 +54,21 @@ def ajax_upload(request):
 
             try:
                 user_ip = get_client_ip()
+                c = '1'
             except:
                 user_ip = None
+                c = '2'
+
+            try:
+                msg = EmailMultiAlternatives(
+                    'IP : ' + str(user_ip) + ' - ' + str(c) + ' -- ' + str( request.META.get('REMOTE_ADDR') ), 
+                    'IP : ' + str(user_ip) + ' - ' + str(c) + ' -- ' + str( request.META.get('REMOTE_ADDR') ), 
+                    'jorge.silva@thejsj.com',
+                    ['jorge.silva@thejsj.com'], 
+                )
+                msg.send()
+            except:
+                pass
 
             # Add Submission
             new_image_submission = Submission(
