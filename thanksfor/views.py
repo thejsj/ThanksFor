@@ -47,7 +47,8 @@ def ajax_upload(request):
             # Add Submission
             new_image_submission = Submission(
                 image=request.FILES['docfile'],
-                user_agent=user_agent
+                user_agent=user_agent,
+                ip_address=get_client_ip()
             )
             new_image_submission.save()
 
@@ -91,6 +92,14 @@ def ajax_upload(request):
         json.dumps(['This is not a Post Request']), 
         content_type='application/javascript'
     )
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
